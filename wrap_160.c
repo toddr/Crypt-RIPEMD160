@@ -23,6 +23,8 @@ void RIPEMD160_update(RIPEMD160 ripemd160, byte *strptr, dword len)
 {
   dword 
     i;
+  byte *
+    ptr;
   
   if (ripemd160->count_lo + len < ripemd160->count_lo) {
     ripemd160->count_hi++;
@@ -34,23 +36,32 @@ void RIPEMD160_update(RIPEMD160 ripemd160, byte *strptr, dword len)
     if (i > len) {
       i = len;
     }
-    memcpy(((byte *) ripemd160->X) + ripemd160->local, strptr, i);
+    memcpy(ripemd160->data + ripemd160->local, strptr, i);
     len -= i;
     strptr += i;
     ripemd160->local += i;
     if (ripemd160->local == RIPEMD160_BLOCKSIZE) {
+      memset(ripemd160->X, 0, RIPEMD160_BLOCKSIZE);
+      ptr = ripemd160->data;
+      for (i=0; i<RIPEMD160_BLOCKSIZE; i++) {
+	/* byte i goes into word X[i div 4] at pos.  8*(i mod 4)  */
+	ripemd160->X[i>>2] |= (dword) *ptr++ << (8 * (i&3));
+      }
       compress(ripemd160->MDbuf, ripemd160->X);
     } else {
       return;
     }
   }
   while (len >= RIPEMD160_BLOCKSIZE) {
-    memcpy(ripemd160->X, strptr, RIPEMD160_BLOCKSIZE);
-    strptr += RIPEMD160_BLOCKSIZE;
+    memset(ripemd160->X, 0, RIPEMD160_BLOCKSIZE);
+    for (i=0; i<RIPEMD160_BLOCKSIZE; i++) {
+      /* byte i goes into word X[i div 4] at pos.  8*(i mod 4)  */
+      ripemd160->X[i>>2] |= (dword) *strptr++ << (8 * (i&3));
+    }
     len -= RIPEMD160_BLOCKSIZE;
     compress(ripemd160->MDbuf, ripemd160->X);
   }
-  memcpy((byte *) ripemd160->X, strptr, len);
+  memcpy(ripemd160->data, strptr, len);
   ripemd160->local = len;
 }
 
@@ -65,7 +76,7 @@ void RIPEMD160_final(RIPEMD160 ripemd160)
   }
 
   MDfinish(ripemd160->MDbuf,
-	   (byte *) ripemd160->X,
+	   ripemd160->data,
 	   (dword) ripemd160->count_lo,
 	   (dword) ripemd160->count_hi);
 }

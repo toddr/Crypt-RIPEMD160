@@ -1,8 +1,12 @@
------BEGIN PGP SIGNED MESSAGE-----
-
-Crypt::RIPEMD160 Extension Version 0.03
+Crypt::RIPEMD160 Extension Version 0.04
 
 Crypt::RIPEMD160 adcO "RIPEMD-160 message digest algorithm" CHGEUER
+
+#########################################################################
+
+CHANGES:
+
+Crypt-RIPEMD160-0.04 now supports BigEndian architectures (thanks to Ken Neighbors)
 
 #########################################################################
 
@@ -36,24 +40,32 @@ The rest (RIPEMD160.pm, RIPEMD160.xs, typemap, test.pl and Makefile.PL) are
 stolen and modified from MD5-1.7 and SHA-1.1. Thanks to Neil Wilton and
 Uwe Hollerbach for writing this code.
 
+Thanks to Ken Neighbors who updated this module to support big-endian
+systems in April 2001. Enclosed his comments:
+
+<COMMENT FROM="Ken Neighbors">
+I changed three files: RIPEMD160.xs, wrap_160.h, wrap_160.c
+
+In RIPEMD160.xs, the section commented /* Little Endian (1234) */
+actually works for big-endian systems as well, so I deleted the
+section commented /* Big Endian (4321) */.
+
+In wrap_160.h I added a buffer called "data" to hold the unprocessed
+bytes.  The buffer "X" is now only used to hold bytes for processing.
+
+In wrap_160.c I used a trick from hashtest.c (available at
+http://www.esat.kuleuven.ac.be/~bosselae/ripemd160.html) to do the
+correct byte-ordering.
+</COMMENT>
+
 #########################################################################
 
 ADRESSES:
 
-Christian Geuer: christian.geuer@crypto.gun.de
-Neil Wilton: N.Wilton@axion.bt.co.uk
+Christian Geuer-Pollmann: geuer-pollmann@nue.et-inf.uni-siegen.de
 Uwe Hollerbach: uh@alumni.caltech.edu
-
-#########################################################################
-
-PROBLEMS:
-
-In this version (v0.03) there is no cool support for automatic
-detection of byte-order (little/big-endian). This module was
-developed on a Intel running Linux (little-endian).
-
-When I have little time, I will add support for big Endian. Hope this job
-is done till September 1998.
+Ken Neighbors: ken@nsds.com
+Neil Wilton: N.Wilton@axion.bt.co.uk
 
 #########################################################################
 
@@ -81,16 +93,3 @@ RIPEMD-160 test suite results (ASCII):
   hashcode: 52783243c1697bdbe16d37f97f68f08325dc1528
 
 #########################################################################
-
------BEGIN PGP SIGNATURE-----
-Version: 2.6.3i
-Charset: latin1
-
-iQEVAwUBNaNUE0/ylwIE5/aVAQHUBAf/da5ju28RZ+J3PtBEEzSMvxOUcfJVS08m
-0MzTnLGtY110GhOy0+vdWq89slALzYOz3yxCHVIN4/VE+Jpe5NQSuFWxnc1gSjW0
-/MCqO26VdwPGyOQMd0/5AlGj+ej/pakbQvpx8FRllKxyD9pOE6SrMS4OTn7Dy8kn
-0UbvcA/G8ETn7UaGwuxM2bb+3PY3QGM5gMBdsf1ArZ7w6VCAnQ78Ub20kAreUWQk
-knaUCUSdJax8SEJarlH83HqYwRW081c01AsnkfJnVWpcLWZtBz1i2imaBsbcrIVG
-S9fBcDusjsQaT26PPqo8PJLIjGpOmpv/vaPUUX4LGAVr+cYwHcPaCQ==
-=z7vF
------END PGP SIGNATURE-----

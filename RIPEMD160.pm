@@ -13,7 +13,7 @@ require AutoLoader;
 
 @EXPORT_OK = qw();
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 bootstrap Crypt::RIPEMD160 $VERSION;
 
@@ -270,8 +270,8 @@ licences.
 
 =head1 AUTHOR
 
-The RIPEMD-160 interface was written by Christian H. Geuer (CHGEUER)
-(C<christian.geuer@crypto.gun.de>).
+The RIPEMD-160 interface was written by Christian H. Geuer-Pollmann (CHGEUER)
+(C<geuer-pollmann@nue.et-inf.uni.siegen.de>) and Ken Neighbors (C<ken@nsds.com>).
 
 =head1 SEE ALSO
 

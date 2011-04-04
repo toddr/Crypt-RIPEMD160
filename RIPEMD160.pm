@@ -13,7 +13,7 @@ require AutoLoader;
 
 @EXPORT_OK = qw();
 
-$VERSION = '0.04';
+$VERSION = '0.04_01';
 
 bootstrap Crypt::RIPEMD160 $VERSION;
 

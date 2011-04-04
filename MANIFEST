@@ -23,7 +23,7 @@ rmd160/mac/rmd128mc.c
 rmd160/mac/rmd128mc.h
 rmd160/mac/rmd160mc.c
 rmd160/mac/rmd160mc.h
-test.pl
+t/01test.t
 typemap
 wrap_160.c
 wrap_160.h

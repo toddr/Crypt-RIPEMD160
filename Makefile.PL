@@ -1,21 +1,46 @@
 #! /usr/local/bin/perl
 
+use strict;
+use warnings;
+
 use ExtUtils::MakeMaker;
 use Config;
 
-if ($Config{'byteorder'} eq '1234') {
-	$ENDIAN = 'LITTLE_ENDIAN';
-} else {
-	$ENDIAN = 'BIG_ENDIAN';
-}
+my  $ENDIAN = ($Config{'byteorder'} eq '1234') ? 'LITTLE_ENDIAN' : 'BIG_ENDIAN';
 
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile being created.
 WriteMakefile(
-    'NAME'	   => 'Crypt::RIPEMD160',
-    'VERSION_FROM' => 'RIPEMD160.pm',
+    'DISTNAME'     => 'Crypt-RIPEMD160',
+    'NAME'                => 'Crypt::RIPEMD160',
+    'AUTHOR'              => 'Christian H. Geuer-Pollmann',
+    'VERSION_FROM'  => 'RIPEMD160.pm',
+    'ABSTRACT_FROM' => 'RIPEMD160.pm',
+    'PL_FILES'            => {},
+    ($ExtUtils::MakeMaker::VERSION >= 6.3002 ? ('LICENSE'        => 'perl', ) : ()),
+    PREREQ_PM => {
+        'Test::More' => 0,  # For testing
+    },
+    'dist'                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    'clean'               => { FILES => 'Crypt-RIPEMD160-*' },
+
     'OBJECT'       => q[RIPEMD160$(OBJ_EXT) rmd160$(OBJ_EXT) wrap_160$(OBJ_EXT)],
     'CONFIG'       => ['byteorder'], # Used to determine 64-bitness
     'DEFINE'       => '-DPERL_BYTEORDER=$(BYTEORDER)',
-    'DISTNAME'     => 'Crypt-RIPEMD160',
+
+    META_MERGE  => {
+#        recommends => {
+#            'Test::Pod::Coverage' => 1.04,
+#            'Test::Pod' => 1.14,
+#        },
+        build_requires => {
+            'Test::More' => 0,  # For testing
+        },
+        resources => {
+            license => 'http://dev.perl.org/licenses/',
+            homepage => 'http://wiki.github.com/toddr/Crypt-RIPEMD160',
+#            bugtracker => 'http://code.google.com/p/Crypt-RIPEMD160/issues/list',
+            repository => 'http://github.com/toddr/Crypt-RIPEMD160/tree/master',
+#            MailingList => 'http://groups.google.com/group/Crypt-RIPEMD160',
+        },
+    },
 );
+

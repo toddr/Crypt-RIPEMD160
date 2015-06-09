@@ -1,5 +1,11 @@
 Revision history for Perl extension Crypt::RIPEMD160.
 
+0.06 Tue June 9 2015
+    - Fix for Compiler warnings about printf statement - Thanks flichtenheld
+
+0.05 Mon April 10 2011
+    - Release to CPAN without changes
+
 0.04_01 Mon April 4 2011
     - Fix bug in Module for 64 bit systems where dword was undesirably an 8 byte not 4 byte integer.
 

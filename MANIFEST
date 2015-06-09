@@ -28,3 +28,4 @@ typemap
 wrap_160.c
 wrap_160.h
 META.yml                                 Module meta-data (added by MakeMaker)
+META.json                                Module meta-data (added by MakeMaker)

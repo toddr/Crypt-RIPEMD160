@@ -1,19 +1,14 @@
 package Crypt::RIPEMD160;
 
 use strict;
-use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-require Exporter;
 require DynaLoader;
 require AutoLoader;
-@ISA = qw(Exporter AutoLoader DynaLoader);
+our @ISA = qw(AutoLoader DynaLoader);
 
 # Items to export into callers namespace by default
-@EXPORT = qw();
 
-@EXPORT_OK = qw();
-
-$VERSION = '0.06';
+our $VERSION = '0.07';
 
 bootstrap Crypt::RIPEMD160 $VERSION;
 

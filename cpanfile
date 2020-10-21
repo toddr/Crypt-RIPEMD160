@@ -1,7 +1,6 @@
 #requires "Git::Repository"             => 0;
 #recommends "YAML"             => "0";
 requires 'DynaLoader' => 0;
-requires 'Exporter' => 0;
 requires 'AutoLoader' => 0;
 requires 'Carp' => 0;
 

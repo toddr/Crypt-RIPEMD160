@@ -3,14 +3,9 @@ package Crypt::RIPEMD160::MAC;
 use Crypt::RIPEMD160 0.03;
 
 use strict;
-use vars qw($VERSION @ISA @EXPORT);
+use warnings;
 
-require Exporter;
-@ISA = qw(Exporter);
-
-# Items to export into callers namespace by default
-@EXPORT = qw();
-$VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new {
     my($pkg, $key) = @_;

@@ -12,8 +12,8 @@ WriteMakefile(
     'DISTNAME'     => 'Crypt-RIPEMD160',
     'NAME'                => 'Crypt::RIPEMD160',
     'AUTHOR'              => 'Christian H. Geuer-Pollmann',
-    'VERSION_FROM'  => 'RIPEMD160.pm',
-    'ABSTRACT_FROM' => 'RIPEMD160.pm',
+    'VERSION_FROM'  => 'lib/Crypt/RIPEMD160.pm',
+    'ABSTRACT_FROM' => 'lib/Crypt/RIPEMD160.pm',
     'PL_FILES'            => {},
     ($ExtUtils::MakeMaker::VERSION >= 6.3002 ? ('LICENSE'        => 'perl', ) : ()),
     PREREQ_PM => {

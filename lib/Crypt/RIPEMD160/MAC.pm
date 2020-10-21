@@ -1,11 +1,11 @@
 package Crypt::RIPEMD160::MAC;
 
-use Crypt::RIPEMD160 0.03;
+use Crypt::RIPEMD160;
 
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.07';
 
 sub new {
     my($pkg, $key) = @_;
